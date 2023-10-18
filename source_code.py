@@ -2,7 +2,6 @@ import numpy as np
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-from sklearn.linear_model import LinearRegression
 import difflib
 
 movie_df=pd.read_csv('movies.csv')
@@ -17,7 +16,7 @@ combined=movie_df['genres']+' '+movie_df['keywords']+' '+movie_df['tagline']+' '
 
 vectorizer=TfidfVectorizer()
 feature_vector=vectorizer.fit_transform(combined)
-feature_vector
+# feature_vector
 
 similarity=cosine_similarity(feature_vector)
 
