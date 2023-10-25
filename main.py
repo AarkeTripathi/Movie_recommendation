@@ -8,10 +8,13 @@ app=FastAPI()
 async def msg():
     return 'Server alive'
 
-@app.post('/moviename')
+@app.get('/moviename/{movie}')
 async def recommend(movie):
-    recommendation=source_code.recommended(movie)
-    return recommendation
+    try:
+        recommendation=source_code.recommended(movie)
+        return recommendation
+    except:
+        return 'Recommendation not available'
 
 if __name__=='__main__':
     uvicorn.run(app, host='localhost', port=8002)

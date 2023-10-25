@@ -21,18 +21,16 @@ similarity=cosine_similarity(feature_vector)
 
 lst=movie_df['original_title'].to_list()
 
+movie_df.set_index('original_title', inplace=True)  
 # movie_name=input('Enter the name of your favourite movie: ')
+def return_ind(movie_df,movie_name):
+    for i in range(movie_df.shape[0]):
+        if movie_df.index[i]==movie_name:
+            return i
 
 def recommended(movie_name):
     find_close_match=difflib.get_close_matches(movie_name,lst)
     movie_name=find_close_match[0]
-
-    movie_df.set_index('original_title', inplace=True)  
-
-    def return_ind(movie_df,movie_name):
-        for i in range(movie_df.shape[0]):
-            if movie_df.index[i]==movie_name:
-                return i
             
     ind=return_ind(movie_df,movie_name)
     similarity_score=list(enumerate(similarity[ind]))
